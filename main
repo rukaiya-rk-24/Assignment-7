@@ -1,0 +1,162 @@
+Quesn 1.
+bool isIsomorphic(string s, string t) {
+        unordered_map<char, char> mpp;
+        for(int i=0;i<s.size();i++){
+            if(!mpp[s[i]] || mpp[s[i]]==t[i]) mpp[s[i]]=t[i];
+            else return false;
+        }
+        unordered_map<char,char> m;
+        for(int i=0;i<t.size();i++){
+            if(!m[t[i]] || m[t[i]]==s[i]) m[t[i]]=s[i];
+            else return false;
+        }
+        return true;
+    }
+
+
+
+
+Quesn 3.
+int i=num1.length()-1,j=num2.length()-1,carr=0;
+        string ans;
+        while(i>=0 && j>=0){
+            int a = (num1[i]-'0');
+            int b = (num2[j]-'0');
+            int c = a+b+carr;
+            if(c>=10){
+                carr=1;
+                c=c%10;
+            }
+            else carr=0;
+            ans=to_string(c)+ans;
+            i--;
+            j--;
+        }
+        while(i>=0){
+            int a = (num1[i]-'0');
+            int c = a+carr;
+            if(c>=10){
+                carr=1;
+                c=c%10;
+            }
+            else carr=0;
+            ans=to_string(c)+ans;
+            i--;
+        }
+        while(j>=0){
+            int a = (num2[j]-'0');
+            int c = a+carr;
+            if(c>=10){
+                carr=1;
+                c=c%10;
+            }
+            else carr=0;
+            ans=to_string(c)+ans;
+            j--;
+        }
+        if(carr) ans+='1';
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+
+
+    
+
+Quesn 4.
+string reverseWords(string s) {
+        int k=0;
+        int n=s.size();
+        int i=0;
+        while(i<n){
+            if(s[i]==' '){
+                reverse(s.begin()+k,s.begin()+i);
+                k=i+1;
+            }
+            i++;
+        }
+        reverse(s.begin()+k,s.begin()+i);
+        return s;
+    }
+
+
+
+Quesn 5.
+string reverseStr(string s, int k) {
+        int n=s.length();
+        if(k>n)
+        { 
+            reverse(s.begin(),s.end());
+            return s;
+        }
+      
+       int j=0;
+    string ans;
+    
+    for (int i = 0; i < n; i += (2 * k))
+    {
+        string temp = s.substr(i, k);
+        reverse(temp.begin(), temp.end());
+        ans += temp;
+
+        j += k ;
+        while (j < n && j < (i+2*k))
+        {
+            ans.push_back(s[j]);
+            j++;
+        }
+    }
+    return ans;
+    }
+
+
+    
+
+Quesn 6.
+bool rotateString(string s, string goal) {
+        if(s.size()!=goal.size()) return false;
+        int n = s.size();
+        s+=s;
+        for(int i=0;i<n;i++){
+            if(s.substr(i,n)==goal) return true;
+        }
+        return false;
+    }
+
+
+
+
+Quesn 7.
+bool backspaceCompare(string s, string t) {
+        stack<int> st1,st2;
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='#'){
+                if(!st1.empty()) st1.pop();
+            }
+            else st1.push(s[i]-'a');
+        }
+        for(int i=0;i<t.size();i++){
+            if(t[i]=='#'){
+                if(!st2.empty()) st2.pop();
+            }
+            else st2.push(t[i]-'a');
+        }
+        if(st1==st2) return true;
+        return false;
+    }
+
+
+
+Quesn 8.
+bool checkStraightLine(vector<vector<int>>& coordinates) {
+        for(int i=2;i<coordinates.size();i++){
+            if(((coordinates[i][1]-coordinates[i-1][1])*(coordinates[i-1][0]-coordinates[i-2]                     [0] ))!=((coordinates[i][0]-coordinates[i-1][0] )*(coordinates[i-1][1]-                          coordinates[i-2][1]))){
+                return  false;
+            }
+        }
+        return true;
+    }
+
+
+
+
+
